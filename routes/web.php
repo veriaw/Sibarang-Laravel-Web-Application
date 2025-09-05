@@ -25,4 +25,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
+Route::post('/addbarang', [DashboardController::class, 'addBarang'])->name('inventories.add');
+
+Route::post('/updatebarang/{id}', [DashboardController::class, 'updateBarang'])->name('inventories.update');
+
+Route::post('/deletebarang/{id}', [DashboardController::class, 'deleteBarang'])->name('inventories.delete');
+
 Route::get('/logout', [AuthController::class, 'logout']);

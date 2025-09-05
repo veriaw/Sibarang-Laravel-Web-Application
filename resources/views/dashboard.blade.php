@@ -126,7 +126,7 @@
                     <div class="flex-1">
                     <div class="text-sm font-medium text-gray-500">Tersedia</div>
                     <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $availableCount ?? 120 }}</span>
+                        <span class="text-2xl font-semibold text-gray-900">{{ $totalTersedia }}</span>
                         <span class="text-sm text-green-600">•</span>
                         <span class="text-sm text-gray-500">Stok siap</span>
                     </div>
@@ -148,7 +148,7 @@
                     <div class="flex-1">
                     <div class="text-sm font-medium text-gray-500">Dipinjam</div>
                     <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $borrowedCount ?? 34 }}</span>
+                        <span class="text-2xl font-semibold text-gray-900">{{ $totalDipinjam }}</span>
                         <span class="text-sm text-yellow-600">•</span>
                         <span class="text-sm text-gray-500">Sedang dipakai</span>
                     </div>
@@ -170,7 +170,7 @@
                     <div class="flex-1">
                     <div class="text-sm font-medium text-gray-500">Hilang / Rusak</div>
                     <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $lostCount ?? 3 }}</span>
+                        <span class="text-2xl font-semibold text-gray-900">{{ $totalHilang }}</span>
                         <span class="text-sm text-red-600">•</span>
                         <span class="text-sm text-gray-500">Perlu tindakan</span>
                     </div>
@@ -179,23 +179,69 @@
                 </div>
             </div>
         </div>
+
+        {{-- add inventory button --}}
+        <button onclick="document.getElementById('addModal').classList.remove('hidden')" type="submit" class="block w-full mx-auto sm:w-1/5 sm:ml-16 my-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Tambah Inventaris</button>
+        {{-- add inventory popup --}}
+        <div id="addModal" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm hidden">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <h2 class="text-xl font-semibold mb-4">Tambah Inventaris</h2>
+                <form action="/addbarang" method="POST" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Nama Produk</label>
+                        <input type="text" name="name" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Kategori</label>
+                        <select name="category" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <option value="">Pilih Kategori</option>
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Alat Tulis">Alat Tulis</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Tersedia</label>
+                        <input type="number" name="tersedia" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Dipinjam</label>
+                        <input type="number" name="dipinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Hilang</label>
+                        <input type="number" name="hilang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700">Batal</button>
+                        <button type="submit" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         {{-- table content --}}
-        <button type="submit" class="block w-full mx-auto sm:w-1/5 sm:ml-16 my-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Tambah Inventaris</button>
         <div class="mx-auto w-11/12 relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            PNama Produk
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Warna
+                            Nama Produk
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Price
+                            Tersedia
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Dipinjam
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Hilang
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -203,98 +249,99 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($inventories as $inventory)
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
+                            {{ $inventory->name }}
                         </th>
                         <td class="px-6 py-4">
-                            Silver
+                            {{ $inventory->category }}
                         </td>
                         <td class="px-6 py-4">
-                            Laptop
+                            {{ $inventory->tersedia }}
                         </td>
                         <td class="px-6 py-4">
-                            $2999
+                            {{ $inventory->dipinjam }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $inventory->hilang }}
                         </td>
                         <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                            <button onclick="openEditModal({{ $inventory->id }}, '{{ $inventory->name }}', '{{ $inventory->category }}', {{ $inventory->tersedia }}, {{ $inventory->dipinjam }}, {{ $inventory->hilang }})" type="button"
+                                class="col-span-1 w-full text-xs font-medium text-white bg-blue-600 rounded px-3 py-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                Edit
+                            </button>
+                            <form action="/deletebarang/{{ $inventory->id }}" method="POST" class="col-span-1 w-full">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $inventory->id }}">
+                                <button type="submit"
+                                    onclick="return confirm('Yakin ingin menghapus barang ini?')"
+                                    class="w-full text-xs font-medium text-white bg-red-600 rounded px-3 py-1 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                            White
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop PC
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
-                        </td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
-                        </td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Google Pixel Phone
-                        </th>
-                        <td class="px-6 py-4">
-                            Gray
-                        </td>
-                        <td class="px-6 py-4">
-                            Phone
-                        </td>
-                        <td class="px-6 py-4">
-                            $799
-                        </td>
-                        <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple Watch 5
-                        </th>
-                        <td class="px-6 py-4">
-                            Red
-                        </td>
-                        <td class="px-6 py-4">
-                            Wearables
-                        </td>
-                        <td class="px-6 py-4">
-                            $999
-                        </td>
-                        <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="col-span-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
+
+            {{-- edit barang popup --}}
+            <script>
+                function openEditModal(id, name, category, tersedia, dipinjam, hilang) {
+                    document.getElementById('editModal').classList.remove('hidden');
+                    document.getElementById('editName').value = name;
+                    document.getElementById('editCategory').value = category;
+                    document.getElementById('editTersedia').value = tersedia;
+                    document.getElementById('editDipinjam').value = dipinjam;
+                    document.getElementById('editHilang').value = hilang;
+                    // Set action form ke /updatebarang/{id}
+                    document.getElementById('editForm').action = '/updatebarang/' + id;
+                }
+                function closeEditModal() {
+                    document.getElementById('editModal').classList.add('hidden');
+                }
+            </script>
+            <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm hidden">
+                <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                    <button type="button" onclick="closeEditModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                    <h2 class="text-xl font-semibold mb-4">Edit Inventaris</h2>
+                    <form id="editForm" method="POST" class="space-y-4">
+                        @csrf
+                        @method('POST')
+                        <div>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Nama Produk</label>
+                            <input type="text" name="name" id="editName" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Kategori</label>
+                            <select name="category" id="editCategory" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                                <option value="">Pilih Kategori</option>
+                                <option value="Elektronik">Elektronik</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Alat Tulis">Alat Tulis</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Tersedia</label>
+                            <input type="number" name="tersedia" id="editTersedia" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Dipinjam</label>
+                            <input type="number" name="dipinjam" id="editDipinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Hilang</label>
+                            <input type="number" name="hilang" id="editHilang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        </div>
+                        <div class="flex justify-end gap-2">
+                            <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700">Batal</button>
+                            <button type="submit" class="px-4 py-2 rounded bg-blue-700 hover:bg-blue-800 text-white">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>
