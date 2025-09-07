@@ -52,7 +52,7 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 bg-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="/loan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="#" class="flex items-center p-2 text-gray-900 bg-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v6.41A7.5 7.5 0 1 0 10.5 22H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Z" clip-rule="evenodd"/>
                     <path fill-rule="evenodd" d="M9 16a6 6 0 1 1 12 0 6 6 0 0 1-12 0Zm6-3a1 1 0 0 1 1 1v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 1 1 0-2h1v-1a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
@@ -101,110 +101,45 @@
     </aside>
 
     <div class="p-4 sm:ml-64 mt-20">
-        <div class="mx-auto w-11/12 px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-6">
-                <!-- Card: Tersedia -->
-                <div class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-md bg-green-50">
-                    <!-- icon (box) -->
-                    <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73L13 3a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L11 21a2 2 0 0 0 2 0l7-3.27A2 2 0 0 0 21 16z"/>
-                        <path d="M7 9.5v6.5M17 9.5v6.5" />
-                    </svg>
-                    </div>
-                    <div class="flex-1">
-                    <div class="text-sm font-medium text-gray-500">Tersedia</div>
-                    <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $totalTersedia }}</span>
-                        <span class="text-sm text-green-600">•</span>
-                        <span class="text-sm text-gray-500">Stok siap</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Card: Dipinjam -->
-                <div class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-md bg-yellow-50">
-                    <!-- icon (clock/loan) -->
-                    <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 8v4l3 3" />
-                        <path d="M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0z" />
-                    </svg>
-                    </div>
-                    <div class="flex-1">
-                    <div class="text-sm font-medium text-gray-500">Dipinjam</div>
-                    <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $totalDipinjam }}</span>
-                        <span class="text-sm text-yellow-600">•</span>
-                        <span class="text-sm text-gray-500">Sedang dipakai</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Card: Hilang / Rusak -->
-                <div class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-md bg-red-50">
-                    <!-- icon (alert/damage) -->
-                    <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                        <path d="M12 9v4M12 17h.01" />
-                    </svg>
-                    </div>
-                    <div class="flex-1">
-                    <div class="text-sm font-medium text-gray-500">Hilang / Rusak</div>
-                    <div class="mt-1 flex items-baseline gap-2">
-                        <span class="text-2xl font-semibold text-gray-900">{{ $totalHilang }}</span>
-                        <span class="text-sm text-red-600">•</span>
-                        <span class="text-sm text-gray-500">Perlu tindakan</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-
         {{-- add inventory button --}}
-        <button onclick="document.getElementById('addModal').classList.remove('hidden')" type="submit" class="block w-full mx-auto sm:w-1/5 sm:ml-16 my-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Tambah Inventaris</button>
+        <button onclick="document.getElementById('addModal').classList.remove('hidden')" type="submit" class="block w-full mx-auto sm:w-1/5 sm:ml-16 my-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajukan Peminjaman</button>
         {{-- add inventory popup --}}
         <div id="addModal" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm hidden">
             <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
                 <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
                 <h2 class="text-xl font-semibold mb-4">Tambah Inventaris</h2>
-                <form action="/addbarang" method="POST" class="space-y-4">
+                <form action="/addloan" method="POST" class="space-y-4">
                     @csrf
                     <div>
-                        <label class="block mb-1 text-sm font-medium text-gray-700">Nama Produk</label>
-                        <input type="text" name="name" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Peminjam</label>
+                        <input type="text" name="peminjam" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                     </div>
                     <div>
-                        <label class="block mb-1 text-sm font-medium text-gray-700">Kategori</label>
-                        <select name="category" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
-                            <option value="">Pilih Kategori</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="Furniture">Furniture</option>
-                            <option value="Alat Tulis">Alat Tulis</option>
-                            <option value="Lainnya">Lainnya</option>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Barang yang Dipinjam</label>
+                        <select name="inventory_id" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <option value="">Pilih Barang</option>
+                            @foreach($inventories as $inventory)
+                                <option value="{{ $inventory->id }}">{{ $inventory->name }} ({{ $inventory->tersedia }})</option>
+                            @endforeach
                         </select>
                     </div>
                     <div>
-                        <label class="block mb-1 text-sm font-medium text-gray-700">Tersedia</label>
-                        <input type="number" name="tersedia" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Jumlah Barang</label>
+                        <input type="number" name="jumlah_barang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                     </div>
                     <div>
-                        <label class="block mb-1 text-sm font-medium text-gray-700">Dipinjam</label>
-                        <input type="number" name="dipinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Lama Pinjam (Hari)</label>
+                        <input type="number" name="lama_pinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                     </div>
                     <div>
-                        <label class="block mb-1 text-sm font-medium text-gray-700">Hilang</label>
-                        <input type="number" name="hilang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Status</label>
+                        <select name="status" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <option value="">Pilih Status</option>
+                            <option value="Dipinjam">Dipinjam</option>
+                            <option value="Hilang/Rusak">Hilang/Rusak</option>
+                            <option value="Dikembalikan">Dikembalikan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
                     </div>
                     <div class="flex justify-end gap-2">
                         <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700">Batal</button>
@@ -220,19 +155,25 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
+                            Tanggal Pinjam
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Nama Produk
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tersedia
+                            Jumlah Barang
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Dipinjam
+                            Lama Pinjam (Hari)
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Hilang
+                            Peminjam
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -240,33 +181,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($inventories as $inventory)
+                    @foreach($loans as $loan)
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                        <td class="px-6 py-4">
+                            {{ $loan->created_at->format('d M Y') }}
+                        </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $inventory->name }}
+                            {{ $loan->inventory->name }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $inventory->category }}
+                            {{ $loan->inventory->category }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $inventory->tersedia }}
+                            {{ $loan->jumlah_barang }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $inventory->dipinjam }}
+                            {{ $loan->lama_pinjam }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $inventory->hilang }}
+                            {{ $loan->peminjam }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $loan->status }}
                         </td>
                         <td class="grid grid-cols-2 gap-x-4 justify-center px-6 py-4">
-                            <button onclick="openEditModal({{ $inventory->id }}, '{{ $inventory->name }}', '{{ $inventory->category }}', {{ $inventory->tersedia }}, {{ $inventory->dipinjam }}, {{ $inventory->hilang }})" type="button"
-                                class="col-span-1 w-full text-xs font-medium text-white bg-blue-600 rounded px-3 py-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                            <a href="{{ url('/loanprint/' . $loan->id) }}"
+                            class="mb-2 col-span-2 w-full text-xs font-medium text-white bg-blue-600 rounded px-3 py-1 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300 transition text-center mt-1"
+                            target="_blank" download>
+                                Cetak
+                            </a>
+                            <button onclick="openEditModal({{ $loan->id }}, '{{ $loan->inventory->name }}', '{{ $loan->inventory->category }}', {{ $loan->jumlah_barang }}, {{ $loan->lama_pinjam }}, '{{ $loan->peminjam }}', '{{ $loan->status }}')" type="button"
+                                class="col-span-1 w-full text-xs font-medium text-white bg-yellow-600 rounded px-3 py-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
                                 Edit
                             </button>
-                            <form action="/deletebarang/{{ $inventory->id }}" method="POST" class="col-span-1 w-full">
+                            <form action="/deleteloan/{{ $loan->id }}" method="POST" class="col-span-1 w-full">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $inventory->id }}">
+                                <input type="hidden" name="id" value="{{ $loan->id }}">
                                 <button type="submit"
-                                    onclick="return confirm('Yakin ingin menghapus barang ini?')"
+                                    onclick="return confirm('Yakin ingin menghapus data peminjaman ini?')"
                                     class="w-full text-xs font-medium text-white bg-red-600 rounded px-3 py-1 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
                                     Delete
                                 </button>
@@ -276,55 +228,68 @@
                     @endforeach
                 </tbody>
             </table>
-
-            {{-- edit barang popup --}}
+            <!-- Modal Edit Loan -->
             <script>
-                function openEditModal(id, name, category, tersedia, dipinjam, hilang) {
-                    document.getElementById('editModal').classList.remove('hidden');
-                    document.getElementById('editName').value = name;
-                    document.getElementById('editCategory').value = category;
-                    document.getElementById('editTersedia').value = tersedia;
-                    document.getElementById('editDipinjam').value = dipinjam;
-                    document.getElementById('editHilang').value = hilang;
-                    // Set action form ke /updatebarang/{id}
-                    document.getElementById('editForm').action = '/updatebarang/' + id;
+            function openEditModal(id, name, category, jumlah_barang, lama_pinjam, peminjam, status) {
+                document.getElementById('editModal').classList.remove('hidden');
+                document.getElementById('editPeminjam').value = peminjam;
+                document.getElementById('editJumlahBarang').value = jumlah_barang;
+                document.getElementById('editLamaPinjam').value = lama_pinjam;
+                document.getElementById('editStatus').value = status;
+
+                // Set selected inventory berdasarkan nama (atau lebih baik id, jika tersedia)
+                let select = document.getElementById('editInventory');
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].text.includes(name) && select.options[i].text.includes(category)) {
+                        select.selectedIndex = i;
+                        break;
+                    }
                 }
-                function closeEditModal() {
-                    document.getElementById('editModal').classList.add('hidden');
-                }
+
+                // Set action form ke /loan/{id}/update
+                document.getElementById('editForm').action = '/updateloan/' + id;
+            }
+            function closeEditModal() {
+                document.getElementById('editModal').classList.add('hidden');
+            }
             </script>
-            <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm hidden">
+            <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black bg-opacity-20 hidden">
                 <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
                     <button type="button" onclick="closeEditModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-                    <h2 class="text-xl font-semibold mb-4">Edit Inventaris</h2>
+                    <h2 class="text-xl font-semibold mb-4">Edit Peminjaman</h2>
                     <form id="editForm" method="POST" class="space-y-4">
                         @csrf
-                        @method('POST')
+                        <!-- Ganti @method('POST') dengan @method('POST') jika pakai POST, atau PATCH jika pakai PATCH -->
                         <div>
-                            <label class="block mb-1 text-sm font-medium text-gray-700">Nama Produk</label>
-                            <input type="text" name="name" id="editName" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Peminjam</label>
+                            <input type="text" name="peminjam" id="editPeminjam" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                         </div>
                         <div>
-                            <label class="block mb-1 text-sm font-medium text-gray-700">Kategori</label>
-                            <select name="category" id="editCategory" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
-                                <option value="">Pilih Kategori</option>
-                                <option value="Elektronik">Elektronik</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Alat Tulis">Alat Tulis</option>
-                                <option value="Lainnya">Lainnya</option>
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Barang yang Dipinjam</label>
+                            <select name="inventory_id" id="editInventory" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                                <option value="">Pilih Barang</option>
+                                @foreach($inventories as $inventory)
+                                    <option value="{{ $inventory->id }}">{{ $inventory->name }} ({{ $inventory->category }})</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <label class="block mb-1 text-sm font-medium text-gray-700">Tersedia</label>
-                            <input type="number" name="tersedia" id="editTersedia" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Jumlah Barang</label>
+                            <input type="number" name="jumlah_barang" id="editJumlahBarang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                         </div>
                         <div>
-                            <label class="block mb-1 text-sm font-medium text-gray-700">Dipinjam</label>
-                            <input type="number" name="dipinjam" id="editDipinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Lama Pinjam (Hari)</label>
+                            <input type="number" name="lama_pinjam" id="editLamaPinjam" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
                         </div>
                         <div>
-                            <label class="block mb-1 text-sm font-medium text-gray-700">Hilang</label>
-                            <input type="number" name="hilang" id="editHilang" min="0" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                            <label class="block mb-1 text-sm font-medium text-gray-700">Status</label>
+                            <select name="status" id="editStatus" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                                <option value="">Pilih Status</option>
+                                <option value="Dipinjam">Dipinjam</option>
+                                <option value="Hilang/Rusak">Hilang/Rusak</option>
+                                <option value="Dikembalikan">Dikembalikan</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
                         </div>
                         <div class="flex justify-end gap-2">
                             <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700">Batal</button>

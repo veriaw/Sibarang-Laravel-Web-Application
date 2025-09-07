@@ -13,4 +13,9 @@ class Inventory extends Model
         'dipinjam',
         'hilang'
     ];
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }
